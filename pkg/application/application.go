@@ -25,10 +25,8 @@ type Application interface {
 	PluginBuiltAt() time.Time
 
 	Name() string
-
-	Initialize(runner *runner.Runner, cfg *value.Value) error
-	Start(runner *runner.Runner) error
-	Stop()
+	Build(runner *runner.Runner, cfg *value.Value) error
+	Close()
 }
 
 /*
