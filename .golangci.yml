@@ -1,0 +1,12 @@
+### https://github.com/golangci/golangci-lint
+###------------------------------------------
+
+linters:
+  enable-all: true
+  disable:
+    - funlen
+    - godot
+    - godox
+    - gomnd
+    - gosec
+    - testpackage
