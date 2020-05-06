@@ -13,11 +13,42 @@ package component
 
 import "github.com/arnumina/pakad/pkg/message"
 
+// Applications AFAIRE
+type Applications interface {
+	Close()
+}
+
 // Bus AFAIRE
 type Bus interface {
 	NewPublisher(name string, chCapacity int, goCount int) chan<- *message.Message
 	Subscribe(cb func(Logger, *message.Message), reList ...string) error
 	Close()
+}
+
+// Logger AFAIRE
+type Logger interface {
+	Clone(rnr string) Logger
+	Trace(msg string, ctx ...interface{})
+	Debug(msg string, ctx ...interface{})
+	Info(msg string, ctx ...interface{})
+	Notice(msg string, ctx ...interface{})
+	Warning(msg string, ctx ...interface{})
+	Error(msg string, ctx ...interface{})
+	Critical(msg string, ctx ...interface{})
+	Close()
+}
+
+// Scheduler AFAIRE
+type Scheduler interface {
+	Start()
+	Stop()
+	Close()
+}
+
+// Server AFAIRE
+type Server interface {
+	Start()
+	Stop()
 }
 
 /*
