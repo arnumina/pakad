@@ -47,7 +47,7 @@ type Scheduler interface {
 
 // Server AFAIRE
 type Server interface {
-	Start()
+	Start() error
 	Stop()
 }
 
