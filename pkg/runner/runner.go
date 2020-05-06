@@ -31,6 +31,7 @@ type Runner struct {
 	bus          component.Bus
 	logger       component.Logger
 	scheduler    component.Scheduler
+	server       component.Server
 	runtime      bool
 }
 
@@ -118,6 +119,16 @@ func (runner *Runner) SetScheduler(scheduler component.Scheduler) {
 // Scheduler AFAIRE
 func (runner *Runner) Scheduler() component.Scheduler {
 	return runner.scheduler
+}
+
+// SetServer AFAIRE
+func (runner *Runner) SetServer(server component.Server) {
+	runner.server = server
+}
+
+// Server AFAIRE
+func (runner *Runner) Server() component.Server {
+	return runner.server
 }
 
 // SetRuntime AFAIRE
