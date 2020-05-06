@@ -15,6 +15,7 @@ package component
 type Scheduler interface {
 	Start()
 	Stop()
+	Close()
 }
 
 /*
