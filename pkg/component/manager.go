@@ -14,13 +14,13 @@ package component
 type (
 	// Manager AFAIRE
 	Manager struct {
-		cpts   []component
+		cpts   []Component
 		values map[string]interface{}
 	}
 )
 
 // NewManager AFAIRE
-func NewManager(cpts ...component) *Manager {
+func NewManager(cpts ...Component) *Manager {
 	return &Manager{
 		cpts:   cpts,
 		values: make(map[string]interface{}),
