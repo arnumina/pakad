@@ -18,6 +18,14 @@ import (
 )
 
 type (
+	// Component AFAIRE
+	Component interface {
+		Name() string
+		Start(cm *Manager) error
+		Instance() interface{}
+		Stop(cm *Manager, err error)
+	}
+
 	// Config AFAIRE
 	Config interface {
 		MaybeGet(keys ...string) (*value.Value, error)

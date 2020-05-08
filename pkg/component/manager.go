@@ -16,8 +16,8 @@ import "errors"
 type (
 	// Manager AFAIRE
 	Manager struct {
-		builders []Builder
-		values   map[string]interface{}
+		cpts      []Component
+		instances map[string]interface{}
 	}
 )
 
@@ -27,27 +27,27 @@ var (
 )
 
 // NewManager AFAIRE
-func NewManager(builders ...Builder) *Manager {
+func NewManager(cpts ...Component) *Manager {
 	return &Manager{
-		builders: builders,
-		values:   make(map[string]interface{}),
+		cpts:      cpts,
+		instances: make(map[string]interface{}),
 	}
 }
 
 // Get AFAIRE
 func (m *Manager) Get(name string) interface{} {
-	value, ok := m.values[name]
+	instance, ok := m.instances[name]
 	if !ok {
 		// TODO
 		return nil
 	}
 
-	return value
+	return instance
 }
 
-func (m *Manager) build() error {
-	for _, b := range m.builders {
-		if err := b.Build(m); err != nil {
+func (m *Manager) start() error {
+	for _, c := range m.cpts {
+		if err := c.Start(m); err != nil {
 			if errors.Is(err, ErrNoError) {
 				return nil
 			}
@@ -55,22 +55,27 @@ func (m *Manager) build() error {
 			return err
 		}
 
-		m.values[b.Name()] = b.Value()
+		m.instances[c.Name()] = c.Instance()
 	}
 
 	return nil
 }
 
-func (m *Manager) close() {
-	for _, b := range m.builders {
-		b.Close()
+func (m *Manager) stop(err error) {
+	for _, c := range m.cpts {
+		_, ok := m.instances[c.Name()]
+		if ok {
+			c.Stop(m, err)
+		}
 	}
 }
 
 // Run AFAIRE
 func (m *Manager) Run() error {
-	defer m.close()
-	return m.build()
+	err := m.start()
+	m.stop(err)
+
+	return err
 }
 
 /*
