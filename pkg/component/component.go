@@ -38,6 +38,7 @@ type (
 
 	// Runner AFAIRE
 	Runner interface {
+		ID() string
 		Name() string
 		Version() string
 		BuiltAt() time.Time
