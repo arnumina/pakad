@@ -11,7 +11,11 @@
 
 package component
 
-import "github.com/arnumina/pakad/pkg/value"
+import (
+	"time"
+
+	"github.com/arnumina/pakad/pkg/value"
+)
 
 type (
 	// Component AFAIRE
@@ -44,7 +48,7 @@ type (
 	Runner interface {
 		Name() string
 		Version() string
-		BuiltAt() string
+		BuiltAt() time.Time
 	}
 )
 
