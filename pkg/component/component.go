@@ -11,54 +11,42 @@
 
 package component
 
-import (
-	"github.com/arnumina/pakad/pkg/jw"
-	"github.com/arnumina/pakad/pkg/message"
+import "github.com/arnumina/pakad/pkg/value"
+
+type (
+	// Component AFAIRE
+	Component interface {
+		Build(cm *Manager) error
+		Value() interface{}
+		Close()
+	}
+
+	// Config AFAIRE
+	Config interface {
+		MaybeGet(keys ...string) (*value.Value, error)
+	}
+
+	// Logger AFAIRE
+	Logger interface {
+		Clone(prefix string) Logger
+		Trace(msg string, ctx ...interface{})
+		Debug(msg string, ctx ...interface{})
+		Info(msg string, ctx ...interface{})
+		Notice(msg string, ctx ...interface{})
+		Warning(msg string, ctx ...interface{})
+		Error(msg string, ctx ...interface{})
+		Critical(msg string, ctx ...interface{})
+		Close()
+	}
+
+	// Runner AFAIRE
+	Runner interface {
+		Name() string
+		Version() string
+		BuiltAt() string
+		Runtime() bool
+	}
 )
-
-// Applications AFAIRE
-type Applications interface {
-	Close()
-}
-
-// Backend AFAIRE
-type Backend interface {
-	InsertJob(job *jw.Job) error
-	Close()
-}
-
-// Bus AFAIRE
-type Bus interface {
-	NewPublisher(name string, chCapacity int, goCount int) chan<- *message.Message
-	Subscribe(cb func(*message.Message), reList ...string) error
-	Close()
-}
-
-// Logger AFAIRE
-type Logger interface {
-	Clone(prefix string) Logger
-	Trace(msg string, ctx ...interface{})
-	Debug(msg string, ctx ...interface{})
-	Info(msg string, ctx ...interface{})
-	Notice(msg string, ctx ...interface{})
-	Warning(msg string, ctx ...interface{})
-	Error(msg string, ctx ...interface{})
-	Critical(msg string, ctx ...interface{})
-	Close()
-}
-
-// Scheduler AFAIRE
-type Scheduler interface {
-	Start()
-	Stop()
-	Close()
-}
-
-// Server AFAIRE
-type Server interface {
-	Start() error
-	Stop()
-}
 
 /*
 ######################################################################################################## @(°_°)@ #######

@@ -9,24 +9,23 @@
 ####### (c) 2020 Institut National de l'Audiovisuel ######################################## Archivage Numérique #######
 */
 
-package application
+package component
 
-import (
-	"time"
-
-	"github.com/arnumina/pakad/pkg/runner"
-	"github.com/arnumina/pakad/pkg/value"
+type (
+	// Manager AFAIRE
+	Manager struct {
+		cpts map[string]Component
+	}
 )
 
-// Application AFAIRE
-type Application interface {
-	PluginName() string
-	PluginVersion() string
-	PluginBuiltAt() time.Time
+// Get AFAIRE
+func (man *Manager) Get(name string) interface{} {
+	c, ok := man.cpts[name]
+	if !ok {
+		return nil
+	}
 
-	Name() string
-	Build(runner *runner.Runner, cfg *value.Value) error
-	Close()
+	return c.Value()
 }
 
 /*
