@@ -18,14 +18,6 @@ import (
 )
 
 type (
-	// Component AFAIRE
-	Component interface {
-		Name() string
-		Build(cm *Manager) error
-		Value() interface{}
-		Close()
-	}
-
 	// Config AFAIRE
 	Config interface {
 		MaybeGet(keys ...string) (*value.Value, error)
@@ -46,9 +38,9 @@ type (
 
 	// Runner AFAIRE
 	Runner interface {
-		AppName() string
-		AppVersion() string
-		AppBuiltAt() time.Time
+		Name() string
+		Version() string
+		BuiltAt() time.Time
 	}
 )
 

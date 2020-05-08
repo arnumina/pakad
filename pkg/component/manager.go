@@ -14,16 +14,16 @@ package component
 type (
 	// Manager AFAIRE
 	Manager struct {
-		cpts   []Component
-		values map[string]interface{}
+		builders []Builder
+		values   map[string]interface{}
 	}
 )
 
 // NewManager AFAIRE
-func NewManager(cpts ...Component) *Manager {
+func NewManager(builders ...Builder) *Manager {
 	return &Manager{
-		cpts:   cpts,
-		values: make(map[string]interface{}),
+		builders: builders,
+		values:   make(map[string]interface{}),
 	}
 }
 
@@ -41,17 +41,17 @@ func (man *Manager) Get(name string) interface{} {
 // Run AFAIRE
 func (man *Manager) Run() error {
 	defer func() {
-		for _, c := range man.cpts {
-			c.Close()
+		for _, b := range man.builders {
+			b.Close()
 		}
 	}()
 
-	for _, c := range man.cpts {
-		if err := c.Build(man); err != nil {
+	for _, b := range man.builders {
+		if err := b.Build(man); err != nil {
 			return err
 		}
 
-		man.values[c.Name()] = c.Value()
+		man.values[b.Name()] = b.Value()
 	}
 
 	return nil
