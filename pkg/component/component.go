@@ -42,6 +42,7 @@ type (
 		Name() string
 		Version() string
 		BuiltAt() time.Time
+		StartedAt() time.Time
 	}
 )
 
