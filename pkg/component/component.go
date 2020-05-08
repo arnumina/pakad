@@ -11,10 +11,19 @@
 
 package component
 
-import "github.com/arnumina/pakad/pkg/message"
+import (
+	"github.com/arnumina/pakad/pkg/jw"
+	"github.com/arnumina/pakad/pkg/message"
+)
 
 // Applications AFAIRE
 type Applications interface {
+	Close()
+}
+
+// Backend AFAIRE
+type Backend interface {
+	InsertJob(job *jw.Job) error
 	Close()
 }
 
@@ -27,7 +36,7 @@ type Bus interface {
 
 // Logger AFAIRE
 type Logger interface {
-	Clone(rnr string) Logger
+	Clone(prefix string) Logger
 	Trace(msg string, ctx ...interface{})
 	Debug(msg string, ctx ...interface{})
 	Info(msg string, ctx ...interface{})
