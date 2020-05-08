@@ -45,7 +45,7 @@ func LoggerRunnerName(id, name string) string {
 		mlName = len(name)
 	}
 
-	return fmt.Sprintf("%5s.%8s", name[:mlName], id[:mlID])
+	return fmt.Sprintf("%6s.%8s", name[:mlName], id[:mlID])
 }
 
 // NewUUID génère un UUID V4.
