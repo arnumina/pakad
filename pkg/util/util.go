@@ -17,7 +17,13 @@ import (
 	mathrand "math/rand"
 	"os"
 	"strconv"
+	"strings"
 	"time"
+)
+
+const (
+	_maxLLPName = 10
+	_maxLLPID   = 8
 )
 
 // FileExists vérifie l'existence d'un fichier.
@@ -33,19 +39,19 @@ func FileExists(file string) (bool, error) {
 	return true, nil
 }
 
-// LoggerRunnerName AFAIRE
-func LoggerRunnerName(id, name string) string {
-	mlID := 8
-	if len(id) < mlID {
-		mlID = len(id)
+// LoggerPrefix AFAIRE
+func LoggerPrefix(name, id string) string {
+	if len(name) < _maxLLPName {
+		name = strings.Repeat(".", _maxLLPName-len(name)) + name
 	}
 
-	mlName := 9
-	if len(name) < mlName {
-		mlName = len(name)
+	if len(id) < _maxLLPID {
+		id = strings.Repeat(".", _maxLLPID-len(id)) + id
+	} else {
+		id = id[:_maxLLPID]
 	}
 
-	return fmt.Sprintf("%9s.%8s", name[:mlName], id[:mlID])
+	return fmt.Sprintf("%s.%s", name, id)
 }
 
 // NewUUID génère un UUID V4.
