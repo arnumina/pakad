@@ -14,8 +14,8 @@ package component
 import "github.com/arnumina/pakad/pkg/value"
 
 type (
-	// Component AFAIRE
-	Component interface {
+	component interface {
+		Name() string
 		Build(cm *Manager) error
 		Value() interface{}
 		Close()
