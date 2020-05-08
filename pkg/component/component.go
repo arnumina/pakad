@@ -46,9 +46,9 @@ type (
 
 	// Runner AFAIRE
 	Runner interface {
-		Name() string
-		Version() string
-		BuiltAt() time.Time
+		AppName() string
+		AppVersion() string
+		AppBuiltAt() time.Time
 	}
 )
 
