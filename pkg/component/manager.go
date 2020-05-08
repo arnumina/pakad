@@ -11,12 +11,19 @@
 
 package component
 
+import "errors"
+
 type (
 	// Manager AFAIRE
 	Manager struct {
 		builders []Builder
 		values   map[string]interface{}
 	}
+)
+
+var (
+	// ErrNoError AFAIRE
+	ErrNoError = errors.New("no error")
 )
 
 // NewManager AFAIRE
@@ -28,8 +35,8 @@ func NewManager(builders ...Builder) *Manager {
 }
 
 // Get AFAIRE
-func (man *Manager) Get(name string) interface{} {
-	value, ok := man.values[name]
+func (m *Manager) Get(name string) interface{} {
+	value, ok := m.values[name]
 	if !ok {
 		// TODO
 		return nil
@@ -38,23 +45,32 @@ func (man *Manager) Get(name string) interface{} {
 	return value
 }
 
-// Run AFAIRE
-func (man *Manager) Run() error {
-	defer func() {
-		for _, b := range man.builders {
-			b.Close()
-		}
-	}()
+func (m *Manager) build() error {
+	for _, b := range m.builders {
+		if err := b.Build(m); err != nil {
+			if errors.Is(err, ErrNoError) {
+				return nil
+			}
 
-	for _, b := range man.builders {
-		if err := b.Build(man); err != nil {
 			return err
 		}
 
-		man.values[b.Name()] = b.Value()
+		m.values[b.Name()] = b.Value()
 	}
 
 	return nil
+}
+
+func (m *Manager) close() {
+	for _, b := range m.builders {
+		b.Close()
+	}
+}
+
+// Run AFAIRE
+func (m *Manager) Run() error {
+	defer m.close()
+	return m.build()
 }
 
 /*
