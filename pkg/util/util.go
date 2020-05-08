@@ -40,7 +40,7 @@ func LoggerRunnerName(id, name string) string {
 		mlID = len(id)
 	}
 
-	mlName := 5
+	mlName := 6
 	if len(name) < mlName {
 		mlName = len(name)
 	}

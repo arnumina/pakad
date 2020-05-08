@@ -21,7 +21,7 @@ type Applications interface {
 // Bus AFAIRE
 type Bus interface {
 	NewPublisher(name string, chCapacity int, goCount int) chan<- *message.Message
-	Subscribe(cb func(Logger, *message.Message), reList ...string) error
+	Subscribe(cb func(*message.Message), reList ...string) error
 	Close()
 }
 
