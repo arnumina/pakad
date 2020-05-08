@@ -16,12 +16,25 @@ import "time"
 // Job AFAIRE
 type Job struct {
 	ID          string
+	Name        string
 	Application string
 	Type        string
-	Name        string
 	Origin      string
 	Priority    Priority
 	CreatedAt   time.Time
+}
+
+// NewJob AFAIRE
+func NewJob(id, name, application, jt, origin string, priority Priority) *Job {
+	return &Job{
+		ID:          id,
+		Name:        name,
+		Application: application,
+		Type:        jt,
+		Origin:      origin,
+		Priority:    priority,
+		CreatedAt:   time.Now(),
+	}
 }
 
 /*
