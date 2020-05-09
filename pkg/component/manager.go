@@ -63,7 +63,11 @@ func (m *Manager) start() error {
 }
 
 func (m *Manager) stop(err error) {
-	for _, c := range m.cpts {
+	l := len(m.cpts)
+
+	for i := range m.cpts {
+		c := m.cpts[l-1-i]
+
 		_, ok := m.instances[c.Name()]
 		if ok {
 			c.Stop(m, err)
