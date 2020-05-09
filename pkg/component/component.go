@@ -14,6 +14,8 @@ package component
 import (
 	"time"
 
+	"github.com/arnumina/pakad/pkg/jw"
+	"github.com/arnumina/pakad/pkg/message"
 	"github.com/arnumina/pakad/pkg/value"
 )
 
@@ -23,6 +25,19 @@ type (
 		Name() string
 		Start(cm *Manager) (interface{}, error)
 		Stop(cm *Manager, err error)
+	}
+
+	// Backend AFAIRE
+	Backend interface {
+		InsertJob(job *jw.Job) error
+		Close()
+	}
+
+	// Bus AFAIRE
+	Bus interface {
+		NewPublisher(name string, chCapacity int) chan<- *message.Message
+		Subscribe(cb func(*message.Message), reList ...string) error
+		Close()
 	}
 
 	// Config AFAIRE
@@ -50,6 +65,18 @@ type (
 		Version() string
 		BuiltAt() time.Time
 		StartedAt() time.Time
+	}
+
+	// Scheduler AFAIRE
+	Scheduler interface {
+		Start()
+		Stop()
+	}
+
+	// Server AFAIRE
+	Server interface {
+		Start() error
+		Stop()
 	}
 )
 
