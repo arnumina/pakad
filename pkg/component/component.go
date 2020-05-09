@@ -35,7 +35,7 @@ type (
 
 	// Bus AFAIRE
 	Bus interface {
-		NewPublisher(name string, chCapacity int) chan<- *message.Message
+		NewPublisher(name string, chCapacity, consumer int) chan<- *message.Message
 		Subscribe(cb func(*message.Message), reList ...string) error
 		Close()
 	}
