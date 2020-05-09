@@ -21,8 +21,7 @@ type (
 	// Component AFAIRE
 	Component interface {
 		Name() string
-		Start(cm *Manager) error
-		Instance() interface{}
+		Start(cm *Manager) (interface{}, error)
 		Stop(cm *Manager, err error)
 	}
 

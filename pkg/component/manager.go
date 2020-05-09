@@ -47,7 +47,8 @@ func (m *Manager) Get(name string) interface{} {
 
 func (m *Manager) start() error {
 	for _, c := range m.cpts {
-		if err := c.Start(m); err != nil {
+		instance, err := c.Start(m)
+		if err != nil {
 			if errors.Is(err, ErrNoError) {
 				return nil
 			}
@@ -55,7 +56,7 @@ func (m *Manager) start() error {
 			return err
 		}
 
-		m.instances[c.Name()] = c.Instance()
+		m.instances[c.Name()] = instance
 	}
 
 	return nil
