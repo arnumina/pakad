@@ -24,6 +24,9 @@ type Job struct {
 	Priority    Priority  `bson:"Priority"`
 	CreatedAt   time.Time `bson:"CreatedAt"`
 	RefTime     time.Time `bson:"RefTime"`
+	RunAfter    time.Time `bson:"RunAfter"`
+	Status      string    `bson:"Status"`
+	Attempt     int       `bson:"Attempt"`
 }
 
 // NewJob AFAIRE
@@ -38,6 +41,9 @@ func NewJob(id, name, application, jt, origin, category string, priority Priorit
 		Priority:    priority,
 		CreatedAt:   time.Now(),
 		RefTime:     time.Now(),
+		RunAfter:    time.Now(),
+		Status:      "TODO",
+		Attempt:     0,
 	}
 }
 
