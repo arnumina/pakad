@@ -15,13 +15,13 @@ import "time"
 
 // Job AFAIRE
 type Job struct {
-	ID          string `bson:"_id"`
-	Name        string
-	Application string
-	Type        string
-	Origin      string
-	Priority    Priority
-	CreatedAt   time.Time
+	ID          string    `bson:"_id"`
+	Name        string    `bson:"Name"`
+	Application string    `bson:"Application"`
+	Type        string    `bson:"Type"`
+	Origin      string    `bson:"Origin"`
+	Priority    Priority  `bson:"Priority"`
+	CreatedAt   time.Time `bson:"CreatedAt"`
 }
 
 // NewJob AFAIRE
