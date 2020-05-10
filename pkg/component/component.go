@@ -34,16 +34,16 @@ type (
 		PluginBuiltAt() time.Time
 
 		Name() string
-		Start(cm *Manager, cfg *value.Value) error
+		Build(cm *Manager, cfg *value.Value) error
 		RunJob(job *jw.Job) error
-		Stop()
+		Close()
 	}
 
 	// Applications AFAIRE
 	Applications interface {
 		Find(appName string) Application
 		List() []Application
-		Stop()
+		Close()
 	}
 
 	// Backend AFAIRE
