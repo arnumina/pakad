@@ -27,6 +27,23 @@ type (
 		Stop(cm *Manager, err error)
 	}
 
+	// Application AFAIRE
+	Application interface {
+		PluginName() string
+		PluginVersion() string
+		PluginBuiltAt() time.Time
+
+		Component
+
+		RunJob(job *jw.Job) error
+	}
+
+	// Applications AFAIRE
+	Applications interface {
+		Find(app string) Application
+		List() []Application
+	}
+
 	// Backend AFAIRE
 	Backend interface {
 		InsertJob(job *jw.Job) error
