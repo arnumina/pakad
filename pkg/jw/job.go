@@ -15,7 +15,7 @@ import "time"
 
 // Job AFAIRE
 type Job struct {
-	ID          string
+	ID          string `bson:"_id"`
 	Name        string
 	Application string
 	Type        string
