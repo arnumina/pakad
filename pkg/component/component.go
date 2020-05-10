@@ -34,7 +34,7 @@ type (
 		PluginBuiltAt() time.Time
 
 		Name() string
-		Start(cm *Manager) error
+		Start(cm *Manager, cfg *value.Value) error
 		RunJob(job *jw.Job) error
 		Stop()
 	}
