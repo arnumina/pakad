@@ -43,7 +43,7 @@ type (
 	Applications interface {
 		Find(appName string) Application
 		List() []Application
-		Stop(cm *Manager, err error)
+		Stop()
 	}
 
 	// Backend AFAIRE
