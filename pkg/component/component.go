@@ -33,14 +33,15 @@ type (
 		PluginVersion() string
 		PluginBuiltAt() time.Time
 
-		Component
-
+		Name() string
+		Start(cm *Manager) error
 		RunJob(job *jw.Job) error
+		Stop()
 	}
 
 	// Applications AFAIRE
 	Applications interface {
-		Find(app string) Application
+		Find(appName string) Application
 		List() []Application
 		Stop(cm *Manager, err error)
 	}
