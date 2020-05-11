@@ -49,6 +49,7 @@ type (
 	// Backend AFAIRE
 	Backend interface {
 		InsertJob(job *jw.Job) error
+		NextJob() *jw.Job
 		Close()
 	}
 
@@ -100,7 +101,8 @@ type (
 
 	// Workers AFAIRE
 	Workers interface {
-		Start() error
+		Add(temporary bool) error
+		Count() int
 		Stop()
 	}
 )
