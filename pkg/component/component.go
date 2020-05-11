@@ -97,6 +97,12 @@ type (
 		Start() error
 		Stop()
 	}
+
+	// Workers AFAIRE
+	Workers interface {
+		Start() error
+		Stop()
+	}
 )
 
 /*
