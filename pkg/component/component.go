@@ -101,7 +101,7 @@ type (
 
 	// Workers AFAIRE
 	Workers interface {
-		Add(temporary bool) error
+		Add(count int, temporary bool)
 		Count() int
 		Stop()
 	}
