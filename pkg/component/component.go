@@ -43,7 +43,6 @@ type (
 	Applications interface {
 		Find(appName string) Application
 		List() []Application
-		Close()
 	}
 
 	// Backend AFAIRE

@@ -45,6 +45,16 @@ func (m *Manager) Get(name string) interface{} {
 	return instance
 }
 
+// Config AFAIRE
+func (m *Manager) Config() Config {
+	return m.Get("config").(Config)
+}
+
+// Logger AFAIRE
+func (m *Manager) Logger() Logger {
+	return m.Get("logger").(Logger)
+}
+
 func (m *Manager) start() error {
 	for _, c := range m.cpts {
 		instance, err := c.Start(m)
