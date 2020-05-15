@@ -79,6 +79,7 @@ type (
 	// Config AFAIRE
 	Config interface {
 		MaybeGet(keys ...string) (*value.Value, error)
+		String(d string, required bool, keys ...string) (string, error)
 	}
 
 	// Logger AFAIRE
