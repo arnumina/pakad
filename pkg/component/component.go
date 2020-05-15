@@ -15,6 +15,8 @@ import (
 	"errors"
 	"time"
 
+	"github.com/gorilla/mux"
+
 	"github.com/arnumina/pakad/pkg/jw"
 	"github.com/arnumina/pakad/pkg/message"
 	"github.com/arnumina/pakad/pkg/value"
@@ -111,7 +113,9 @@ type (
 	}
 
 	// Server AFAIRE
-	Server interface{}
+	Server interface {
+		ApplicationRouter(appName string) *mux.Router
+	}
 
 	// Workers AFAIRE
 	Workers interface {
