@@ -29,8 +29,8 @@ type (
 	// Component AFAIRE
 	Component interface {
 		Name() string
-		Start(cm Manager) (interface{}, error)
-		Stop(cm Manager, err error)
+		Start(m Manager) (interface{}, error)
+		Stop(m Manager, err error)
 	}
 
 	// Manager AFAIRE
@@ -53,7 +53,7 @@ type (
 		PluginBuiltAt() time.Time
 
 		Name() string
-		Build(cm Manager, cfg *value.Value) error
+		Build(m Manager, cfg *value.Value) error
 		RunJob(job *jw.Job) error
 		Close()
 	}
@@ -68,14 +68,12 @@ type (
 	Backend interface {
 		InsertJob(job *jw.Job) error
 		NextJob() *jw.Job
-		Close()
 	}
 
 	// Bus AFAIRE
 	Bus interface {
 		NewPublisher(name string, chCapacity, consumer int) chan<- *message.Message
 		Subscribe(cb func(*message.Message), reList ...string) error
-		Close()
 	}
 
 	// Config AFAIRE
@@ -93,7 +91,6 @@ type (
 		Warning(msg string, ctx ...interface{})
 		Error(msg string, ctx ...interface{})
 		Critical(msg string, ctx ...interface{})
-		Close()
 	}
 
 	// Runner AFAIRE
@@ -108,20 +105,15 @@ type (
 	// Scheduler AFAIRE
 	Scheduler interface {
 		Start()
-		Stop()
 	}
 
 	// Server AFAIRE
-	Server interface {
-		Start() error
-		Stop()
-	}
+	Server interface{}
 
 	// Workers AFAIRE
 	Workers interface {
 		Add(count int, temporary bool)
 		Count() int
-		Stop()
 	}
 )
 
