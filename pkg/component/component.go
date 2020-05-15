@@ -114,7 +114,7 @@ type (
 
 	// Server AFAIRE
 	Server interface {
-		ApplicationRouter(appName string) *mux.Router
+		NewAppRouter(appName string) *mux.Router
 	}
 
 	// Workers AFAIRE
