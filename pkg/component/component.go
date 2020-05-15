@@ -23,8 +23,21 @@ type (
 	// Component AFAIRE
 	Component interface {
 		Name() string
-		Start(cm *Manager) (interface{}, error)
-		Stop(cm *Manager, err error)
+		Start(cm Manager) (interface{}, error)
+		Stop(cm Manager, err error)
+	}
+
+	// Manager AFAIRE
+	Manager interface {
+		Applications() Applications
+		Backend() Backend
+		Bus() Bus
+		Config() Config
+		Logger() Logger
+		Runner() Runner
+		Scheduler() Scheduler
+		Server() Server
+		Workers() Workers
 	}
 
 	// Application AFAIRE
@@ -34,7 +47,7 @@ type (
 		PluginBuiltAt() time.Time
 
 		Name() string
-		Build(cm *Manager, cfg *value.Value) error
+		Build(cm Manager, cfg *value.Value) error
 		RunJob(job *jw.Job) error
 		Close()
 	}
