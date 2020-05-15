@@ -12,11 +12,17 @@
 package component
 
 import (
+	"errors"
 	"time"
 
 	"github.com/arnumina/pakad/pkg/jw"
 	"github.com/arnumina/pakad/pkg/message"
 	"github.com/arnumina/pakad/pkg/value"
+)
+
+var (
+	// ErrNoError AFAIRE
+	ErrNoError = errors.New("no error")
 )
 
 type (
