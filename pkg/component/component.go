@@ -79,9 +79,12 @@ type (
 	// Config AFAIRE
 	Config interface {
 		MaybeGet(keys ...string) (*value.Value, error)
-		Bool(d bool, required bool, keys ...string) (bool, error)
-		Int(d int, required bool, keys ...string) (int, error)
-		String(d string, required bool, keys ...string) (string, error)
+		Bool(d bool, keys ...string) (bool, error)
+		RBool(keys ...string) (bool, error)
+		Int(d int, keys ...string) (int, error)
+		RInt(keys ...string) (int, error)
+		String(d string, keys ...string) (string, error)
+		RString(keys ...string) (string, error)
 	}
 
 	// Logger AFAIRE
