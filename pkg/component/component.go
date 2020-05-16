@@ -13,6 +13,8 @@ package component
 
 import (
 	"errors"
+	"io"
+	"log"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -86,6 +88,13 @@ type (
 		RString(keys ...string) (string, error)
 	}
 
+	// StdLogAdapter AFAIRE
+	StdLogAdapter interface {
+		io.Writer
+		// NewStdLogger AFAIRE
+		NewStdLogger(prefix string, flag int) *log.Logger
+	}
+
 	// Logger AFAIRE
 	Logger interface {
 		Clone(prefix string) Logger
@@ -96,6 +105,7 @@ type (
 		Warning(msg string, ctx ...interface{})
 		Error(msg string, ctx ...interface{})
 		Critical(msg string, ctx ...interface{})
+		NewStdLogAdapter(lvl string, ctx ...interface{}) StdLogAdapter
 	}
 
 	// Runner AFAIRE
