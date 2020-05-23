@@ -129,7 +129,7 @@ type (
 
 	// Workers AFAIRE
 	Workers interface {
-		Add(count int, temporary bool)
+		Add(temporary bool)
 		Count() int
 	}
 )
