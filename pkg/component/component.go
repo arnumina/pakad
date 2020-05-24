@@ -108,6 +108,12 @@ type (
 		NewStdLogAdapter(lvl string, ctx ...interface{}) StdLogAdapter
 	}
 
+	// Model AFAIRE
+	Model interface {
+		InsertJob(job *jw.Job) error
+		NextJob() *jw.Job
+	}
+
 	// Runner AFAIRE
 	Runner interface {
 		ID() string
