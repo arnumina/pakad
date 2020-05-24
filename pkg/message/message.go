@@ -20,18 +20,17 @@ type (
 	Message struct {
 		ID        string
 		Topic     string
-		Publisher string
 		Data      interface{}
+		Publisher string
 	}
 )
 
 // New AFAIRE
-func New(topic, publisher string, data interface{}) *Message {
+func New(topic string, data interface{}) *Message {
 	return &Message{
-		ID:        util.NewUUID(),
-		Topic:     topic,
-		Publisher: publisher,
-		Data:      data,
+		ID:    util.NewUUID(),
+		Topic: topic,
+		Data:  data,
 	}
 }
 
