@@ -44,6 +44,7 @@ type (
 		Bus() Bus
 		Config() Config
 		Logger() Logger
+		Model() Model
 		Runner() Runner
 		Scheduler() Scheduler
 		Server() Server
