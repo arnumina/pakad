@@ -15,13 +15,15 @@ import (
 	"github.com/arnumina/pakad/pkg/util"
 )
 
-// Message AFAIRE
-type Message struct {
-	ID        string
-	Topic     string
-	Publisher string
-	Data      interface{}
-}
+type (
+	// Message AFAIRE
+	Message struct {
+		ID        string
+		Topic     string
+		Publisher string
+		Data      interface{}
+	}
+)
 
 // New AFAIRE
 func New(topic, publisher string, data interface{}) *Message {
