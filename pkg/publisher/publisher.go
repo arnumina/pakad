@@ -44,6 +44,11 @@ func (p *Publisher) Publish(logger component.Logger, topic, publisher string, da
 	p.channel <- msg
 }
 
+// Close AFAIRE
+func (p *Publisher) Close() {
+	close(p.channel)
+}
+
 /*
 ######################################################################################################## @(°_°)@ #######
 */
