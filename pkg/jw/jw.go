@@ -36,11 +36,18 @@ const (
 type (
 	// Result AFAIRE
 	Result struct {
-		Completed   bool
-		Failure     failure.Failure
+		*failure.Failure
 		WaitingTime time.Duration
 	}
 )
+
+// NewResult AFAIRE
+func NewResult(err error, wt time.Duration) *Result {
+	return &Result{
+		Failure:     failure.New(err),
+		WaitingTime: wt,
+	}
+}
 
 /*
 ######################################################################################################## @(°_°)@ #######
