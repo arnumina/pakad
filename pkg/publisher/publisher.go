@@ -23,6 +23,13 @@ type (
 	}
 )
 
+// New AFAIRE
+func New(channel chan<- *message.Message) *Publisher {
+	return &Publisher{
+		channel: channel,
+	}
+}
+
 // Publish AFAIRE
 func (p *Publisher) Publish(logger component.Logger, topic, publisher string, data interface{}) {
 	msg := message.New(topic, publisher, data)
