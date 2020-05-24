@@ -36,15 +36,15 @@ const (
 type (
 	// Result AFAIRE
 	Result struct {
-		*failure.Failure
+		Failure     *failure.Failure
 		WaitingTime time.Duration
 	}
 )
 
 // NewResult AFAIRE
-func NewResult(err error, wt time.Duration) *Result {
+func NewResult(f *failure.Failure, wt time.Duration) *Result {
 	return &Result{
-		Failure:     failure.New(err),
+		Failure:     f,
 		WaitingTime: wt,
 	}
 }
