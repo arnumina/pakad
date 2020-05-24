@@ -19,26 +19,28 @@ import (
 type (
 	// Publisher AFAIRE
 	Publisher struct {
+		name    string
 		channel chan<- *message.Message
 	}
 )
 
 // New AFAIRE
-func New(channel chan<- *message.Message) *Publisher {
+func New(name string, channel chan<- *message.Message) *Publisher {
 	return &Publisher{
+		name:    name,
 		channel: channel,
 	}
 }
 
 // Publish AFAIRE
-func (p *Publisher) Publish(logger component.Logger, topic, publisher string, data interface{}) {
-	msg := message.New(topic, publisher, data)
+func (p *Publisher) Publish(logger component.Logger, topic string, data interface{}) {
+	msg := message.New(topic, p.name, data)
 
 	logger.Debug( //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		"Publish message",
 		"id", msg.ID,
 		"topic", msg.Topic,
-		"publisher", msg.Publisher,
+		"publisher", p.name,
 	)
 
 	p.channel <- msg
