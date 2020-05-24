@@ -35,7 +35,7 @@ func (p *Publisher) Publish(logger component.Logger, topic, publisher string, da
 	msg := message.New(topic, publisher, data)
 
 	logger.Debug( //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-		"Message",
+		"Publish message",
 		"id", msg.ID,
 		"topic", msg.Topic,
 		"publisher", msg.Publisher,
