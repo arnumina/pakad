@@ -11,6 +11,12 @@
 
 package jw
 
+import (
+	"time"
+
+	"github.com/arnumina/pakad/pkg/failure"
+)
+
 // Priority AFAIRE
 type Priority int
 
@@ -25,6 +31,15 @@ const (
 	High = 80
 	// Critical AFAIRE
 	Critical = 100
+)
+
+type (
+	// Result AFAIRE
+	Result struct {
+		Completed   bool
+		Failure     failure.Failure
+		WaitingTime time.Duration
+	}
 )
 
 /*
