@@ -34,18 +34,17 @@ type Job struct {
 }
 
 // NewJob AFAIRE
-func NewJob(
-	id, name, application, jt, origin, category string, exclusivity Exclusivity, group string, priority Priority) *Job {
+func NewJob(id, n, a, t, o, c string, e Exclusivity, g string, p Priority) *Job {
 	return &Job{
 		ID:          id,
-		Name:        name,
-		Application: application,
-		Type:        jt,
-		Origin:      origin,
-		Category:    category,
-		Exclusivity: exclusivity,
-		Group:       group,
-		Priority:    priority,
+		Name:        n,
+		Application: a,
+		Type:        t,
+		Origin:      o,
+		Category:    c,
+		Exclusivity: e,
+		Group:       g,
+		Priority:    p,
 		WID:         "",
 		WFailed:     false,
 		CreatedAt:   time.Now(),

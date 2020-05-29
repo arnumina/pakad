@@ -71,7 +71,7 @@ type (
 
 	// Backend AFAIRE
 	Backend interface {
-		InsertJob(job *jw.Job) error
+		MaybeInsertJob(job *jw.Job) error
 		NextJob() *jw.Job
 	}
 
