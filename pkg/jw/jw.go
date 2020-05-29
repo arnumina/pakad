@@ -17,12 +17,24 @@ import (
 	"github.com/arnumina/pakad/pkg/failure"
 )
 
+// Exclusivity AFAIRE
+type Exclusivity string
+
+const (
+	// No AFAIRE
+	No Exclusivity = "no"
+	// Itself AFAIRE
+	Itself = "itself"
+	// Application AFAIRE
+	Application = "application"
+)
+
 // Priority AFAIRE
 type Priority int
 
 const (
 	// None AFAIRE
-	None = 0
+	None Priority = 0
 	// Low AFAIRE
 	Low = 20
 	// Medium AFAIRE
@@ -31,6 +43,24 @@ const (
 	High = 80
 	// Critical AFAIRE
 	Critical = 100
+)
+
+// Status AFAIRE
+type Status string
+
+const (
+	// Todo AFAIRE
+	Todo Status = "todo"
+	// Running AFAIRE
+	Running = "running"
+	// Pending AFAIRE
+	Pending = "pending"
+	// Succeeded AFAIRE
+	Succeeded = "succeeded"
+	// Failed AFAIRE
+	Failed = "failed"
+	// Aborted AFAIRE
+	Aborted = "aborted"
 )
 
 type (
