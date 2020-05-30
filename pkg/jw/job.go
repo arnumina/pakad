@@ -20,12 +20,12 @@ type Job struct {
 	Application string
 	Type        string
 	Origin      string
-	Category    string
+	Category    *string
 	Exclusivity Exclusivity
-	Group       string
+	Group       *string
 	Priority    Priority
-	WID         string
-	WFailed     bool
+	WID         *string
+	WFailed     *bool
 	CreatedAt   time.Time
 	RefTime     time.Time
 	RunAfter    time.Time
@@ -34,7 +34,7 @@ type Job struct {
 }
 
 // NewJob AFAIRE
-func NewJob(id, n, a, t, o, c string, e Exclusivity, g string, p Priority) *Job {
+func NewJob(id, n, a, t, o string, c *string, e Exclusivity, g *string, p Priority) *Job {
 	return &Job{
 		ID:          id,
 		Name:        n,
@@ -45,8 +45,8 @@ func NewJob(id, n, a, t, o, c string, e Exclusivity, g string, p Priority) *Job 
 		Exclusivity: e,
 		Group:       g,
 		Priority:    p,
-		WID:         "",
-		WFailed:     false,
+		WID:         nil,
+		WFailed:     nil,
 		CreatedAt:   time.Now(),
 		RefTime:     time.Now(),
 		RunAfter:    time.Now(),
