@@ -69,6 +69,11 @@ type (
 		Failure     *failure.Failure
 		WaitingTime time.Duration
 	}
+
+	// Runner AFAIRE
+	Runner interface {
+		Run() *Result
+	}
 )
 
 // NewResult AFAIRE
