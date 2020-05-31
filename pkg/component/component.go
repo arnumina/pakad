@@ -59,7 +59,7 @@ type (
 
 		Name() string
 		Build(m Manager, cfg *value.Value) error
-		RunJob(logger Logger, job *jw.Job) *jw.Result
+		RunJob(job *jw.Job, logger Logger) *jw.Result
 		Close()
 	}
 
