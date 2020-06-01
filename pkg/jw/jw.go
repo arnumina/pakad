@@ -17,8 +17,62 @@ import (
 	"github.com/arnumina/pakad/pkg/failure"
 )
 
-// Exclusivity AFAIRE
-type Exclusivity string
+type (
+	// Exclusivity AFAIRE
+	Exclusivity string
+
+	// Priority AFAIRE
+	Priority int
+
+	// Status AFAIRE
+	Status string
+
+	// Job AFAIRE
+	Job struct {
+		ID          string
+		Name        string
+		Application string
+		Type        string
+		Origin      string
+		Category    *string
+		Exclusivity Exclusivity
+		Group       *string
+		Priority    Priority
+		WID         *string
+		WFailed     *bool
+		CreatedAt   time.Time
+		RefTime     time.Time
+		RunAfter    time.Time
+		Status      Status
+		Attempt     int
+	}
+
+	// Result AFAIRE
+	Result struct {
+		Failure     *failure.Failure
+		WaitingTime time.Duration
+	}
+
+	// Runner AFAIRE
+	Runner interface {
+		Run() *Result
+	}
+
+	// Workflow AFAIRE
+	Workflow struct {
+		ID        string
+		Name      string
+		Title     string
+		Origin    string
+		Priority  Priority
+		FirstStep string
+		AllSteps  interface{}
+		Data      interface{}
+		CreatedAt time.Time
+		Status    Status
+		EndedAt   *time.Time
+	}
+)
 
 const (
 	// No AFAIRE
@@ -27,12 +81,7 @@ const (
 	Itself = "itself"
 	// Application AFAIRE
 	Application = "application"
-)
 
-// Priority AFAIRE
-type Priority int
-
-const (
 	// None AFAIRE
 	None Priority = 0
 	// Low AFAIRE
@@ -43,12 +92,7 @@ const (
 	High = 80
 	// Critical AFAIRE
 	Critical = 100
-)
 
-// Status AFAIRE
-type Status string
-
-const (
 	// Todo AFAIRE
 	Todo Status = "todo"
 	// Running AFAIRE
@@ -63,24 +107,50 @@ const (
 	Aborted = "aborted"
 )
 
-type (
-	// Result AFAIRE
-	Result struct {
-		Failure     *failure.Failure
-		WaitingTime time.Duration
+// NewJob AFAIRE
+func NewJob(id, n, a, t, o string, c *string, e Exclusivity, g *string, p Priority) *Job {
+	return &Job{
+		ID:          id,
+		Name:        n,
+		Application: a,
+		Type:        t,
+		Origin:      o,
+		Category:    c,
+		Exclusivity: e,
+		Group:       g,
+		Priority:    p,
+		WID:         nil,
+		WFailed:     nil,
+		CreatedAt:   time.Now(),
+		RefTime:     time.Now(),
+		RunAfter:    time.Now(),
+		Status:      Todo,
+		Attempt:     0,
 	}
-
-	// Runner AFAIRE
-	Runner interface {
-		Run() *Result
-	}
-)
+}
 
 // NewResult AFAIRE
 func NewResult(f *failure.Failure, wt time.Duration) *Result {
 	return &Result{
 		Failure:     f,
 		WaitingTime: wt,
+	}
+}
+
+// NewWorkflow AFAIRE
+func NewWorkflow(id, n, t, o string, p Priority, fs string, as, d interface{}) *Workflow {
+	return &Workflow{
+		ID:        id,
+		Name:      n,
+		Title:     t,
+		Origin:    o,
+		Priority:  p,
+		FirstStep: fs,
+		AllSteps:  as,
+		Data:      d,
+		CreatedAt: time.Now(),
+		Status:    Running,
+		EndedAt:   nil,
 	}
 }
 
