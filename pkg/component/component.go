@@ -73,6 +73,7 @@ type (
 	Backend interface {
 		MaybeInsertJob(job *jw.Job) (bool, error)
 		NextJob() (*jw.Job, error)
+		UpdateJob(job *jw.Job) error
 	}
 
 	// Bus AFAIRE
@@ -113,6 +114,7 @@ type (
 	Model interface {
 		MaybeInsertJob(job *jw.Job) bool
 		NextJob() *jw.Job
+		UpdateJob(job *jw.Job) bool
 	}
 
 	// Runner AFAIRE
