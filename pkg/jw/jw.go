@@ -38,6 +38,7 @@ type (
 		Exclusivity Exclusivity
 		Group       *string
 		Priority    Priority
+		Emails      *string
 		WID         *string
 		WFailed     *bool
 		CreatedAt   time.Time
@@ -65,8 +66,9 @@ type (
 		Title     string
 		Origin    string
 		Priority  Priority
+		Emails    *string
 		FirstStep string
-		AllSteps  interface{}
+		Steps     interface{}
 		Data      interface{}
 		CreatedAt time.Time
 		Status    Status
@@ -119,6 +121,7 @@ func NewJob(id, n, a, t, o string, c *string, e Exclusivity, g *string, p Priori
 		Exclusivity: e,
 		Group:       g,
 		Priority:    p,
+		Emails:      nil,
 		WID:         nil,
 		WFailed:     nil,
 		CreatedAt:   time.Now(),
@@ -146,8 +149,9 @@ func NewWorkflow(id, n, t, o string, p Priority, fs string, as, d interface{}) *
 		Origin:    o,
 		Priority:  p,
 		FirstStep: fs,
-		AllSteps:  as,
+		Steps:     as,
 		Data:      d,
+		Emails:    nil,
 		CreatedAt: time.Now(),
 		Status:    Running,
 		EndedAt:   nil,
