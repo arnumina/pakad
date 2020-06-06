@@ -116,7 +116,7 @@ type (
 		MaybeInsertJob(job *jw.Job) bool
 		NextJob() *jw.Job
 		UpdateJob(job *jw.Job) bool
-		InsertWorkflow(wf *jw.Workflow) error
+		InsertWorkflow(wf *jw.Workflow) bool
 	}
 
 	// Runner AFAIRE
