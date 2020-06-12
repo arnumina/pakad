@@ -74,7 +74,8 @@ type (
 		MaybeInsertJob(job *jw.Job) (bool, error)
 		NextJob() (*jw.Job, error)
 		UpdateJob(job *jw.Job) error
-		InsertWorkflow(wf *jw.Workflow) error
+		InsertJob(job *jw.Job) error
+		InsertWorkflow(wf *jw.Workflow, job *jw.Job) error
 	}
 
 	// Bus AFAIRE
@@ -116,7 +117,7 @@ type (
 		MaybeInsertJob(job *jw.Job) bool
 		NextJob() *jw.Job
 		UpdateJob(job *jw.Job) bool
-		InsertWorkflow(wf *jw.Workflow) bool
+		InsertWorkflow(wf *jw.Workflow) error
 	}
 
 	// Runner AFAIRE
