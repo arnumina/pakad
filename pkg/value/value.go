@@ -31,6 +31,11 @@ type Value struct {
 	data interface{}
 }
 
+// New AFAIRE
+func New(data interface{}) *Value {
+	return &Value{data: data}
+}
+
 // Empty AFAIRE
 func Empty() *Value {
 	return &Value{data: map[string]interface{}(nil)}
