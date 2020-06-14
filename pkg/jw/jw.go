@@ -120,7 +120,7 @@ const (
 )
 
 // NewJob AFAIRE
-func NewJob(id, n, a, t, o string, c *string, e Exclusivity, g *string, p Priority) *Job {
+func NewJob(id, n, a, t, o string, c *string, e Exclusivity, g *string, p Priority, em *string) *Job {
 	return &Job{
 		ID:          id,
 		Name:        n,
@@ -131,7 +131,7 @@ func NewJob(id, n, a, t, o string, c *string, e Exclusivity, g *string, p Priori
 		Exclusivity: e,
 		Group:       g,
 		Priority:    p,
-		Emails:      nil,
+		Emails:      em,
 		WID:         nil,
 		WFailed:     nil,
 		CreatedAt:   time.Now(),
