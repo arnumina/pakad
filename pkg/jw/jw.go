@@ -59,6 +59,16 @@ type (
 		Run() *Result
 	}
 
+	// Step AFAIRE
+	Step struct {
+		Application string
+		Type        string
+		Exclusivity Exclusivity
+		Group       *string
+		Next        map[string]interface{}
+		Config      interface{}
+	}
+
 	// Workflow AFAIRE
 	Workflow struct {
 		ID        string
@@ -68,7 +78,7 @@ type (
 		Priority  Priority
 		Emails    *string
 		FirstStep string
-		Steps     interface{}
+		Steps     map[string]*Step
 		Data      interface{}
 		CreatedAt time.Time
 		Status    Status
@@ -141,7 +151,7 @@ func NewResult(f *failure.Failure, wt time.Duration) *Result {
 }
 
 // NewWorkflow AFAIRE
-func NewWorkflow(id, n, t, o string, p Priority, fs string, as, d interface{}) *Workflow {
+func NewWorkflow(id, n, t, o string, p Priority, fs string, s map[string]*Step, d interface{}) *Workflow {
 	return &Workflow{
 		ID:        id,
 		Name:      n,
@@ -149,7 +159,7 @@ func NewWorkflow(id, n, t, o string, p Priority, fs string, as, d interface{}) *
 		Origin:    o,
 		Priority:  p,
 		FirstStep: fs,
-		Steps:     as,
+		Steps:     s,
 		Data:      d,
 		Emails:    nil,
 		CreatedAt: time.Now(),
