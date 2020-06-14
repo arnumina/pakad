@@ -75,6 +75,7 @@ type (
 		NextJob() (*jw.Job, error)
 		UpdateJob(job *jw.Job) error
 		InsertWorkflow(wf *jw.Workflow, job *jw.Job) error
+		Workflow(id string) (*jw.Workflow, error)
 		UpdateWorkflow(wf *jw.Workflow) error
 	}
 
