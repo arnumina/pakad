@@ -71,12 +71,13 @@ type (
 
 	// Backend AFAIRE
 	Backend interface {
+		InsertJob(job *jw.Job) error
 		MaybeInsertJob(job *jw.Job) (bool, error)
 		NextJob() (*jw.Job, error)
 		UpdateJob(job *jw.Job) error
-		InsertWorkflow(wf *jw.Workflow, job *jw.Job) error
 		Workflow(id string) (*jw.Workflow, error)
-		UpdateWorkflow(wf *jw.Workflow, job *jw.Job) error
+		InsertWorkflow(wf *jw.Workflow, job *jw.Job) error
+		UpdateWorkflow(wf *jw.Workflow) error
 	}
 
 	// Bus AFAIRE
@@ -115,10 +116,12 @@ type (
 
 	// Model AFAIRE
 	Model interface {
+		InsertJob(job *jw.Job) error
 		MaybeInsertJob(job *jw.Job) (bool, error)
 		NextJob() *jw.Job
 		UpdateJob(job *jw.Job) error
 		InsertWorkflow(wf *jw.Workflow) error
+		UpdateWorkflow(wf *jw.Workflow) error
 	}
 
 	// Runner AFAIRE
