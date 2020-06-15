@@ -76,7 +76,7 @@ type (
 		UpdateJob(job *jw.Job) error
 		InsertWorkflow(wf *jw.Workflow, job *jw.Job) error
 		Workflow(id string) (*jw.Workflow, error)
-		UpdateWorkflow(wf *jw.Workflow) error
+		UpdateWorkflow(wf *jw.Workflow, job *jw.Job) error
 	}
 
 	// Bus AFAIRE
