@@ -121,7 +121,6 @@ type (
 		NextJob() *jw.Job
 		UpdateJob(job *jw.Job) error
 		InsertWorkflow(wf *jw.Workflow) error
-		UpdateWorkflow(wf *jw.Workflow) error
 	}
 
 	// Runner AFAIRE
