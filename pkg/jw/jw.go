@@ -39,6 +39,7 @@ type (
 		Group       *string
 		Priority    Priority
 		Emails      *string
+		Data        map[string]interface{}
 		WID         *string
 		WFailed     *bool
 		CreatedAt   time.Time
@@ -65,8 +66,8 @@ type (
 		Type        string
 		Exclusivity Exclusivity
 		Group       *string
+		Config      map[string]interface{}
 		Next        map[string]interface{}
-		Config      interface{}
 	}
 
 	// Workflow AFAIRE
@@ -79,7 +80,7 @@ type (
 		Emails    *string
 		FirstStep string
 		Steps     map[string]*Step
-		Data      interface{}
+		Data      map[string]interface{}
 		CreatedAt time.Time
 		Status    Status
 		EndedAt   *time.Time
@@ -151,17 +152,17 @@ func NewResult(f *failure.Failure, wt time.Duration) *Result {
 }
 
 // NewWorkflow AFAIRE
-func NewWorkflow(id, n, t, o string, p Priority, fs string, s map[string]*Step, d interface{}) *Workflow {
+func NewWorkflow(id, n, t, o string, p Priority, em *string, fs string, s map[string]*Step) *Workflow {
 	return &Workflow{
 		ID:        id,
 		Name:      n,
 		Title:     t,
 		Origin:    o,
 		Priority:  p,
+		Emails:    em,
 		FirstStep: fs,
 		Steps:     s,
-		Data:      d,
-		Emails:    nil,
+		Data:      nil,
 		CreatedAt: time.Now(),
 		Status:    Running,
 		EndedAt:   nil,
