@@ -133,6 +133,7 @@ func NewJob(id, n, a, t, o string, c *string, e Exclusivity, g *string, p Priori
 		Group:       g,
 		Priority:    p,
 		Emails:      em,
+		Data:        make(map[string]interface{}),
 		CreatedAt:   time.Now(),
 		RefTime:     time.Now(),
 		RunAfter:    time.Now(),
@@ -159,6 +160,7 @@ func NewWorkflow(id, n, t, o string, p Priority, em *string, fs string, s map[st
 		Emails:    em,
 		FirstStep: fs,
 		Steps:     s,
+		Data:      make(map[string]interface{}),
 		CreatedAt: time.Now(),
 		Status:    Running,
 	}
