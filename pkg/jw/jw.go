@@ -44,6 +44,8 @@ type (
 		WFailed     *bool
 		CreatedAt   time.Time
 		RefTime     time.Time
+		Result      *string
+		NextStep    *string
 		RunAfter    time.Time
 		Status      Status
 		Attempt     int
@@ -139,6 +141,16 @@ func NewJob(id, n, a, t, o string, c *string, e Exclusivity, g *string, p Priori
 		RunAfter:    time.Now(),
 		Status:      Todo,
 	}
+}
+
+// SetResult AFAIRE
+func (j *Job) SetResult(v string) {
+	*j.Result = v
+}
+
+// SetNextStep AFAIRE
+func (j *Job) SetNextStep(v string) {
+	*j.NextStep = v
 }
 
 // NewResult AFAIRE
